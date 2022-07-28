@@ -1,8 +1,8 @@
 import numpy as np
 import pandas as pd
+import matplotlib.pyplot as plt
 import tensorflow as tf
 import tensorflow_datasets as tfds
-# import matplotlib.pyplot as plt
 
 def load_breastcancer():
     DATA_URL = "https://archive.ics.uci.edu/ml/machine-learning-databases/breast-cancer-wisconsin/wdbc.data"
@@ -105,3 +105,8 @@ def load_rock_paper_scissors():
     y_train = np.array([label for (image, label) in ds_np['train']])
     y_test = np.array([label for (image, label) in ds_np['test']])
     return x_train, y_train, x_test, y_test
+
+def plot_some_examples():
+    for i in range(9):
+    plt.subplot(3,3,i+1)
+    plt.imshow(x_train[i], cmap='gray')
