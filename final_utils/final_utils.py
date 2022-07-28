@@ -106,7 +106,7 @@ def load_rock_paper_scissors():
     y_test = np.array([label for (image, label) in ds_np['test']])
     return x_train, y_train, x_test, y_test
 
-def plot_some_examples():
+def plot_some_examples(image_set):
     for i in range(9):
         plt.subplot(3,3,i+1)
-        plt.imshow(x_train[i], cmap='gray')
+        plt.imshow(image_set[i], cmap='gray')
