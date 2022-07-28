@@ -108,5 +108,5 @@ def load_rock_paper_scissors():
 
 def plot_some_examples():
     for i in range(9):
-    plt.subplot(3,3,i+1)
-    plt.imshow(x_train[i], cmap='gray')
+        plt.subplot(3,3,i+1)
+        plt.imshow(x_train[i], cmap='gray')
