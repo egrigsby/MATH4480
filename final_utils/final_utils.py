@@ -110,5 +110,3 @@ def plot_some_examples(image_set):
     for i in range(9):
         plt.subplot(3,3,i+1)
         plt.imshow(image_set[i], cmap='gray')
-
-# test
