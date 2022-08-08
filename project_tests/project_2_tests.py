@@ -374,3 +374,68 @@ def test_explicit_solution(func):
         print(GREEN + 'Test passed' + BLACK)
     else:
         print(RED + 'Test did not pass' + BLACK)
+
+
+def test_coin_toss(func):
+
+    np.random.seed(seed = 1)
+    inputs = (100, 0.9)
+
+    expected_output = np.random.binomial(1, 0.9, size = 100)
+
+    output = func(*inputs)
+
+    if np.isclose(expected_output, output).all():
+        print(GREEN + 'Test passed')
+    else:
+        print(RED + 'Test did not pass' + BLACK)
+        print('For the input: {} \nThe expected output {} \nYour function output is {}'.format(
+                inputs, expected_output, output))
+
+
+def test_die_roll(func):
+
+    np.random.seed(seed = 1)
+    m, p = 30, [1/6]*6
+
+    expected_output = np.random.multinomial(1, p, size = m)
+    output = func(m, p)
+
+    if np.isclose(expected_output, output).all():
+        print(GREEN + 'Test passed')
+    else:
+        print(RED + 'Test did not pass' + BLACK)
+        print('For the input: {}, {} \nThe expected output {} \nYour function output is {}'.format(
+                m, p, expected_output, output))
+
+
+def test_expected_value(func):
+
+    inputs_f = np.array([2,3,4,5,6,7,8,9,10,11,12])
+    inputs_P = np.array([1/36, 2/36, 3/36, 4/36, 5/36, 6/36, 5/36, 4/36, 3/36, 2/36, 1/36])
+
+    expected_output = 7.
+
+    output = func(inputs_f, inputs_P)
+
+    if np.isclose(expected_output, output):
+        print(GREEN + 'Test passed')
+    else:
+        print(RED + 'Test did not pass' + BLACK)
+        print('For the input: {}, {} \nThe expected output {} \nYour function output is {}'.format(
+                inputs_f, inputs_P, expected_output, output))
+
+def test_kl_divergence(func):
+
+    inputs_P, inputs_Q = np.array([0.1, 0.2, 0.7]), np.array([0.7, 0.21, 0.09])
+
+    expected_output = 1.23154041755978
+
+    output = func(inputs_P, inputs_Q)
+
+    if np.isclose(expected_output, output):
+        print(GREEN + 'Test passed')
+    else:
+        print(RED + 'Test did not pass' + BLACK)
+        print('For the input: {}, {} \nThe expected output {} \nYour function output is {}'.format(
+                inputs_P, inputs_Q, expected_output, output))
