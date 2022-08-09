@@ -32,6 +32,42 @@ def plot_decision_boundary_perceptron(w):
 
 # PROJECT 2:
 
+def load_data_sk(center_1=[-1,-1], center_2=[1,1], m=20, seed=None):
+    if seed:
+        np.random.seed(seed=seed)
+    x_train = np.r_[np.random.randn(m,2)*0.5 + center_1, np.random.randn(m,2)*0.5 + center_2]
+    y_train = np.r_[-np.ones(m), np.ones(m)]
+    return x_train, y_train
+
+def plot_data_sk(x,y):
+    plt.figure(figsize=(14,8))
+    plt.scatter(x[:,0], x[:,1], c=y)
+    plt.axis('scaled')
+    plt.xlim([np.min(x[:,0])-0.5, np.max(x[:,0])+0.5])
+    plt.ylim([np.min(x[:,1])-0.5, np.max(x[:,1])+0.5])
+
+def plot_hyperplane_sk(x, h, c=None, label=None):
+    t = np.linspace(np.min(x[:,0])-0.5,np.max(x[:,0])+0.5,100)
+    plt.plot(t, (-1/h[1])*(h[0]*t+h[2]), c=c, label=label)
+    plt.legend()
+    plt.axis('scaled')
+    plt.xlim([np.min(x[:,0])-0.5, np.max(x[:,0])+0.5])
+    plt.ylim([np.min(x[:,1])-0.5, np.max(x[:,1])+0.5])
+
+def perceptron_sk(x_train,y_train):
+    num_data = len(x_train)
+    w, b = np.array([0,0]), 0
+    while True:
+        updated = False
+        for i in range(num_data):
+            if y_train[i]*(np.dot(w,x_train[i]) + b) <= 0:
+                w = w + y_train[i]*x_train[i]
+                b = b + y_train[i]
+                updated = True
+        if not updated:
+            break
+    return np.r_[w, b]
+
 ###########################################################################
 
 # PROJECT 3:

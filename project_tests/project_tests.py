@@ -351,6 +351,16 @@ def test_perceptron(func):
 
 # PROJECT 2:
 
+def test_preprocess_sk(func):
+    x_inputs, y_inputs = np.random.uniform(1,100, (20,10)), np.random.choice([-1,1],(20,))
+    expected_outputs = np.append(x_inputs, np.ones((x_inputs.shape[0],1)), axis=1) # Append a 1 to each data point
+    expected_outputs = expected_outputs * y_inputs.reshape(-1,1)
+    if (func(x_inputs, y_inputs) == expected_outputs).all():
+        print(GREEN + 'Test passed')
+    else:
+        print(RED + 'Test did not pass' + BLACK)
+        print(f'For the inputs: x = {x_inputs} and y = {y_inputs}\nThe expected outputs are {expected_outputs} \nYour function outputs are {func(x_inputs, y_inputs)}')
+
 def test_forward_pass_linear_regression(func):
     np.random.seed(seed = 1)
 
