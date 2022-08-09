@@ -90,7 +90,6 @@ def load_cifar10():
 
 def load_horses_or_humans():
     ds = tfds.load('horses_or_humans', as_supervised=True, batch_size=-1)
-    ds_np = tfds.as_numpy(ds)
     x_train, y_train = tfds.as_numpy(ds['train'])
     x_test, y_test = tfds.as_numpy(ds['test'])
     return x_train, y_train, x_test, y_test
