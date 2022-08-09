@@ -89,21 +89,16 @@ def load_cifar10():
     return x_train, y_train, x_test, y_test
 
 def load_horses_or_humans():
-    ds = tfds.load('horses_or_humans', as_supervised=True)
+    ds = tfds.load('horses_or_humans', as_supervised=True, batch_size=-1)
     ds_np = tfds.as_numpy(ds)
-    x_train = np.array([image for (image, label) in ds_np['train']])
-    x_test = np.array([image for (image, label) in ds_np['test']])
-    y_train = np.array([label for (image, label) in ds_np['train']])
-    y_test = np.array([label for (image, label) in ds_np['test']])
+    x_train, y_train = tfds.as_numpy(ds['train'])
+    x_test, y_test = tfds.as_numpy(ds['test'])
     return x_train, y_train, x_test, y_test
 
 def load_rock_paper_scissors():
-    ds = tfds.load('rock_paper_scissors', as_supervised=True)
-    ds_np = tfds.as_numpy(ds)
-    x_train = np.array([image for (image, label) in ds_np['train']])
-    x_test = np.array([image for (image, label) in ds_np['test']])
-    y_train = np.array([label for (image, label) in ds_np['train']])
-    y_test = np.array([label for (image, label) in ds_np['test']])
+    ds = tfds.load('rock_paper_scissors', as_supervised=True, batch_size=-1)
+    x_train, y_train = tfds.as_numpy(ds['train'])
+    x_test, y_test = tfds.as_numpy(ds['test'])
     return x_train, y_train, x_test, y_test
 
 def plot_some_examples(image_set):
